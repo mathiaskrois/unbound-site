@@ -21,6 +21,12 @@ Brand assets come from the companion Unbound app repository:
 
 The copy retains prelaunch availability. Replace the coming-soon labels with the confirmed App Store URL when the app is released.
 
+## Homepage entrance
+
+`intro.js` and `intro.css` show a once-per-session Watch-logo entrance. The round `watch-icon.png` comes from the companion app's Watch AppIcon asset. A 120 Hz fixed-step damped spring handles landing and hover; departure preserves velocity and accelerates upward. Background tabs suspend the animation clock. Entry by pointer, Enter, or Space starts unmuted video in the activation handler; rejected audible playback retries muted. Failures reveal the homepage. Skip, Escape, focus isolation/restoration, reduced motion, anchor links, and the no-JavaScript homepage remain supported. The video keeps playing during the 0.6-second fade starting at 4.5 seconds of media time.
+
+Refresh the intro stylesheet/script query strings when changing the entrance. Browser tests cover playback failures, early/repeated entry, focus, session bypass, media-time fading, frame-rate consistency, and tab suspension. Playwright's desktop/mobile WebKit profiles are engine tests, not physical iPhone Safari validation.
+
 ## Browser checks
 
 ```sh
