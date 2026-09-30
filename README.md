@@ -10,14 +10,14 @@ Run `npm run preview` (or `python3 -m http.server 8080 --bind 127.0.0.1`) from t
 
 `unbound/experience/` is the dedicated product walkthrough, focused on importing your own MP3 files and transferring them to Apple Watch for offline playback with Pro. Its three-step interactive illustration uses sample content and performs no actual file transfer. Both pages share the scroll-driven device scene; the experience page adds `experience.css` and `experience.js`.
 
-The page is static HTML, CSS, and dependency-free JavaScript. `unbound/assets/landing.css` is scoped to the landing page; legal/support pages retain `site.css`. The devices use CSS perspective and transforms rather than WebGL or a video. A passive scroll listener updates a requestAnimationFrame loop that stops when settled, offscreen, or in a background tab. Mobile uses a single-column composition with the same scroll-driven transforms.
+The page is static HTML, CSS, and dependency-free JavaScript. `unbound/assets/landing.css` supplies the shared product-page layout; `home.css` refines the homepage with editorial typography and open feature columns. `devices.css` supplies the shared phone and Watch materials: machined edges, glass reflections, a graphite case, and a contoured sport band. The product background stays minimal. The walkthrough adds `experience.css`; legal/support pages retain `site.css`. The devices use CSS perspective and transforms rather than WebGL or a video. A passive scroll listener updates a requestAnimationFrame loop that stops when settled, offscreen, or in a background tab. Mobile uses a single-column composition with the same scroll-driven transforms.
 
 The system Reduce Motion preference is respected on load and when changed, and visitors can pause motion explicitly. Content and the static device composition work without JavaScript. The Watch player is a CSS illustration based on the app's playback controls, not a captured Watch screenshot. The iPhone uses the actual current Library preview.
 
 Brand assets come from the companion Unbound app repository:
 
 - `Design/Previews/modern-library-dark.png` → `unbound/assets/library-dark.webp` (660px wide, WebP quality 88).
-- `Unbound/Assets.xcassets/AppIconPreview.imageset/AppIconPreview.png` → `unbound/assets/app-icon.webp` (128px, WebP quality 90).
+- `Design/Brand/unbound-logo-transparent.png` → `unbound/assets/app-icon.webp` (256px, WebP quality 95), `apple-touch-icon.png` (180px), `favicon-32.png`, and `favicon.ico` (16/32/48px). These exports preserve alpha around the rounded glass tile, with no black exterior matte or CSS corner clipping. Regenerate with `python Scripts/export-brand-assets.py --site ../unbound-site` from the companion app checkout; requires Pillow.
 
 The copy retains prelaunch availability. Replace the coming-soon labels with the confirmed App Store URL when the app is released.
 
