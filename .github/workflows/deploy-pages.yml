@@ -65,9 +65,10 @@ jobs:
           mkdir -p _site
           cp index.html CNAME _site/
           cp -R unbound _site/
-          mkdir -p _site/WordWin
-          cp -R wordwin-source/dist/. _site/WordWin/
-          printf '{"commit":"%s"}\n' '${{ steps.wordwin.outputs.ref }}' > _site/WordWin/release.json
+          mkdir -p _site/wordwin
+          cp -R wordwin-source/dist/. _site/wordwin/
+          cp -R wordwin-source/hosting/WordWin _site/WordWin
+          printf '{"commit":"%s"}\n' '${{ steps.wordwin.outputs.ref }}' > _site/wordwin/release.json
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
