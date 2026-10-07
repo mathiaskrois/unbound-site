@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      wordwin_ref:
+        description: 'Verified WordWin full commit SHA (blank uses wordwin-release.txt)'
+        required: false
+        type: string
 
 permissions:
   contents: read
@@ -23,6 +28,36 @@ jobs:
     steps:
       - name: Check out site
         uses: actions/checkout@v4
+      - name: Select WordWin release
+        id: wordwin
+        env:
+          REQUESTED_REF: ${{ inputs.wordwin_ref }}
+        run: |
+          release_ref="$(cat wordwin-release.txt)"
+          if [ -n "$REQUESTED_REF" ]; then release_ref="$REQUESTED_REF"; fi
+          if ! [[ "$release_ref" =~ ^[a-f0-9]{40}$ ]]; then
+            echo 'WordWin release must be a full commit SHA.'
+            exit 1
+          fi
+          echo "ref=$release_ref" >> "$GITHUB_OUTPUT"
+      - name: Check out WordWin
+        uses: actions/checkout@v4
+        with:
+          repository: mathiaskrois/WordWin
+          ref: ${{ steps.wordwin.outputs.ref }}
+          path: wordwin-source
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: wordwin-source/package-lock.json
+      - name: Verify and build WordWin
+        working-directory: wordwin-source
+        run: |
+          npm ci
+          npm test
+          npm run build
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Stage public website
@@ -30,6 +65,9 @@ jobs:
           mkdir -p _site
           cp index.html CNAME _site/
           cp -R unbound _site/
+          mkdir -p _site/WordWin
+          cp -R wordwin-source/dist/. _site/WordWin/
+          printf '{"commit":"%s"}\n' '${{ steps.wordwin.outputs.ref }}' > _site/WordWin/release.json
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

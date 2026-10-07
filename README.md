@@ -39,7 +39,11 @@ Tests cover Chromium, desktop WebKit, and an iPhone WebKit profile: navigation, 
 
 ## Deployment
 
-The GitHub Actions workflow stages only `index.html`, `CNAME`, and `unbound/` into `_site/` and deploys after a push to `main`. Tests and development dependencies are excluded. Set the Pages source to **GitHub Actions** and its custom domain to `krois.dk` in repository settings; the Actions deployment does not configure the domain from the `CNAME` file.
+WordWin is served at `https://krois.dk/WordWin/` from its separate `mathiaskrois/WordWin` source repository. The deployment checks out the full commit SHA pinned in `wordwin-release.txt`, runs its unit tests and production build, and copies the built app alongside Unbound. `/WordWin/release.json` records the deployed WordWin SHA. Its service worker is restricted to `/WordWin/`.
+
+For a WordWin release, first wait for **Verify WordWin** in that repository to pass, then update `wordwin-release.txt` and push this repository. A manual **Deploy GitHub Pages** run may override the pin through the `wordwin_ref` input, which accepts only a full commit SHA. Reverting the pin rolls WordWin back without modifying Unbound content.
+
+The GitHub Actions workflow stages `index.html`, `CNAME`, `unbound/`, and the pinned WordWin production build into `_site/` and deploys after a push to `main`. Tests and development dependencies are excluded. Set the Pages source to **GitHub Actions** and its custom domain to `krois.dk` in repository settings; the Actions deployment does not configure the domain from the `CNAME` file.
 
 The requested App Store URLs are:
 
