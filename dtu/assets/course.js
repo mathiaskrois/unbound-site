@@ -1,3 +1,7 @@
+// Start phone explanations folded; desktop keeps the complete reading view.
+const phoneLayout=matchMedia('(max-width:760px)');
+function setPhoneFolds(){document.querySelectorAll('[data-phone-fold]').forEach(el=>el.open=!phoneLayout.matches);}
+setPhoneFolds();phoneLayout.addEventListener('change',setPhoneFolds);
 import './practice.mjs';
 import {civilDate,semesterState,obligationState,nextObligation,calendarWeek} from './course-state.mjs';
 const all = selector => [...document.querySelectorAll(selector)];
@@ -15,12 +19,14 @@ function showWeek(number) {
 function refresh() {
   const now=new Date(),day=civilDate(now);
   set('[data-date]',dateFormat.format(now)+' · Copenhagen');
+  set('[data-date-phone]',new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Copenhagen',day:'numeric',month:'short'}).format(now));
   if(!data)return;
   const {course,weeks,obligations}=data;
   const state=semesterState(day,weeks,course.breakStart,course.breakEnd);
   const week=state.kind==='week'?state.week:null;
   const label=week?`Week ${String(week.number).padStart(2,'0')} of 13`:state.kind==='break'?'Autumn break':state.kind==='before'?'Semester ahead':'Teaching complete';
   set('[data-semester]',label);
+  set('[data-semester-phone]',week?`Week ${week.number} / 13`:label);
   set('[data-week-dates]',week?`${dateFormat.format(new Date(week.start+'T12:00:00+01:00'))} – ${dateFormat.format(new Date(week.end+'T12:00:00+01:00'))}`:state.kind==='break'?'12–18 October · No teaching week':state.kind==='before'?'Week 1 starts 31 August 2026':'Week 13 ended 6 December 2026');
   set('[data-calendar]',`Calendar week ${calendarWeek(day)} · ${state.kind==='break'?'Week 7 starts 19 October':week?.number===6?'Autumn break next week':week?.number===7?'Back after the autumn break':state.kind==='after'?'Submission and exam dates remain below':'13 teaching weeks, with a break in week 42'}`);
   const currentLink=document.querySelector('[data-current-week]');
@@ -43,6 +49,7 @@ function refresh() {
   const count=obligations.filter(o=>completed[o.id]===true).length;
   set('[data-completed-count]',`${count} of ${obligations.length} complete`);
   const passed=obligations.filter(o=>obligationState(o,now,completed[o.id]===true)==='passed').length;
+  set('[data-past-compact]',passed?`${passed} earlier deadlines to check.`:'Saved on this device.');
   set('[data-past-count]',passed?`${passed} past deadline${passed===1?'':'s'} not marked complete. Check your actual submission status in Learn.`:'Completion reflects your checkboxes, not DTU submission records.');
   set('[data-deadline-summary]',`${count} of ${obligations.length} marked complete${passed?` · ${passed} past dates to check`:''}. All timed deadlines use Copenhagen time.`);
   const next=nextObligation(obligations,now,completed);
