@@ -1,3 +1,4 @@
+import './practice.mjs';
 import {civilDate,semesterState,obligationState,nextObligation,calendarWeek} from './course-state.mjs';
 const all = selector => [...document.querySelectorAll(selector)];
 const set = (selector,text) => all(selector).forEach(el=>el.textContent=text);
@@ -5,7 +6,7 @@ const storageKey='krois.dtu.12106.fall2026.completed';
 let completed={};
 try {const saved=JSON.parse(localStorage.getItem(storageKey)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))completed=saved;}catch {}
 const dateFormat=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Copenhagen',day:'numeric',month:'long',year:'numeric'});
-let data,selectedWeek=null;
+let data,selectedWeek=null,weeklyNavPositioned=false;
 function showWeek(number) {
   all('[data-week-panel]').forEach(panel=>panel.hidden=Number(panel.dataset.weekPanel)!==number);
   all('[data-select-week]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.selectWeek)===number)));
@@ -25,6 +26,8 @@ function refresh() {
   const currentLink=document.querySelector('[data-current-week]');
   if(currentLink){const target=week?.number||(state.kind==='before'?1:state.kind==='break'?7:13);currentLink.href=`/dtu/12106/weeks/${target}/`;currentLink.textContent=state.kind==='break'?'Preview week 7 →':state.kind==='after'?'Review week 13 →':'Open the weekly plan →';}
   all('[data-track]').forEach(el=>{const w=weeks.find(w=>w.number===Number(el.dataset.track));el.classList.toggle('elapsed',day>w.end);el.classList.toggle('current',week?.number===w.number);});
+  if(!weeklyNavPositioned&&matchMedia('(max-width:760px)').matches){const nav=document.querySelector('.rail-weeks nav');const active=nav?.querySelector('[aria-current="page"]')||nav?.querySelector(`[data-week-nav="${week?.number}"]`);if(nav&&active){nav.scrollLeft+=active.getBoundingClientRect().left-nav.getBoundingClientRect().left-nav.clientWidth/2+active.offsetWidth/2;weeklyNavPositioned=true;}}
+  all('[data-week-nav]').forEach(el=>el.classList.toggle('is-current-week',Number(el.dataset.weekNav)===week?.number));
   all('[data-current-marker]').forEach(el=>{el.classList.toggle('is-now',Number(el.dataset.currentMarker)===week?.number);el.parentElement.classList.toggle('is-now',Number(el.dataset.currentMarker)===week?.number);});
   all('[data-tile]').forEach(el=>el.classList.toggle('is-current',Number(el.dataset.tile)===week?.number));
   if(selectedWeek===null)showWeek(week?.number||(state.kind==='break'?7:state.kind==='before'?1:13));

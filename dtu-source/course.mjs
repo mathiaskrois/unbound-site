@@ -1,3 +1,4 @@
+import {exercises} from './exercises.mjs';
 const topic = id => `https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/${id}/View`;
 const unit = id => `https://learn.inside.dtu.dk/d2l/le/lessons/326408/units/${id}`;
 export const course = {
@@ -144,5 +145,5 @@ const rows = [
 ];
 export const weeks = rows.map((r,i) => ({
   number:i+1,start:r[0],end:r[1],classDate:r[2],title:r[3],module:r[4],source:topic(r[5]),url:unit(r[4]),
-  takeaways:r[6].map(([title,text])=>({title,text})),practice:{title:r[7][0],steps:r[7][1],result:r[7][2],check:r[7][3],minutes:'30–60 min'},project:r[8],
+  takeaways:r[6].map(([title,text])=>({title,text})),practice:{title:exercises[i+1].title||r[7][0],steps:exercises[i+1].prompt,result:r[7][2],check:r[7][3],minutes:'30–60 min'},project:r[8],
 }));
