@@ -1,0 +1,177 @@
+{
+  "course": {
+    "id": "12106",
+    "title": "Quantitative Sustainability",
+    "term": "Fall 2026",
+    "case": "Microfabrication",
+    "verified": "8 October 2026",
+    "learn": "https://learn.inside.dtu.dk/d2l/le/lessons/326408/units/1250709",
+    "caseUrl": "https://learn.inside.dtu.dk/d2l/le/lessons/326408/units/1250735",
+    "caseBrief": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251169/View",
+    "schedule": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1250772/View",
+    "deadlineSource": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1250726/View",
+    "catalogue": "https://kurser.dtu.dk/print/courses",
+    "examSource": "https://student.dtu.dk/en/exam/exam-dates",
+    "breakStart": "2026-10-12",
+    "breakEnd": "2026-10-18"
+  },
+  "weeks": [
+    {
+      "number": 1,
+      "start": "2026-08-31",
+      "end": "2026-09-06",
+      "title": "Problems, relevance & obligations"
+    },
+    {
+      "number": 2,
+      "start": "2026-09-07",
+      "end": "2026-09-13",
+      "title": "Assessment framework & functional unit"
+    },
+    {
+      "number": 3,
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "title": "Case study · Problem formulation"
+    },
+    {
+      "number": 4,
+      "start": "2026-09-21",
+      "end": "2026-09-27",
+      "title": "Carbon footprint & environmental indicators"
+    },
+    {
+      "number": 5,
+      "start": "2026-09-28",
+      "end": "2026-10-04",
+      "title": "Health dimensions"
+    },
+    {
+      "number": 6,
+      "start": "2026-10-05",
+      "end": "2026-10-11",
+      "title": "Economic dimensions"
+    },
+    {
+      "number": 7,
+      "start": "2026-10-19",
+      "end": "2026-10-25",
+      "title": "Planetary boundaries & absolute sustainability"
+    },
+    {
+      "number": 8,
+      "start": "2026-10-26",
+      "end": "2026-11-01",
+      "title": "Resource management, scarcity & criticality"
+    },
+    {
+      "number": 9,
+      "start": "2026-11-02",
+      "end": "2026-11-08",
+      "title": "Case study · Applying methods"
+    },
+    {
+      "number": 10,
+      "start": "2026-11-09",
+      "end": "2026-11-15",
+      "title": "Energy systems & decarbonisation"
+    },
+    {
+      "number": 11,
+      "start": "2026-11-16",
+      "end": "2026-11-22",
+      "title": "Circular economy"
+    },
+    {
+      "number": 12,
+      "start": "2026-11-23",
+      "end": "2026-11-29",
+      "title": "Sustainability transitions"
+    },
+    {
+      "number": 13,
+      "start": "2026-11-30",
+      "end": "2026-12-06",
+      "title": "Case study · Integrated assessment"
+    }
+  ],
+  "obligations": [
+    {
+      "id": "enrol",
+      "title": "Join your case-study group",
+      "audience": "Individual",
+      "due": "2026-09-11T23:59:00+02:00",
+      "date": "11 September",
+      "time": "23:59",
+      "url": "https://learn.inside.dtu.dk/d2l/le/lessons/326408/units/1250719",
+      "source": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1250726/View",
+      "description": "Group and case enrolment."
+    },
+    {
+      "id": "task1",
+      "title": "Task 1 · Problem formulation",
+      "audience": "Group",
+      "due": "2026-09-30T23:59:00+02:00",
+      "date": "30 September",
+      "time": "23:59",
+      "url": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251172/View",
+      "source": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251000/View",
+      "description": "Define what you are assessing, why, and within which boundaries."
+    },
+    {
+      "id": "peer1",
+      "title": "Task 1 · Give peer feedback",
+      "audience": "Individual",
+      "due": "2026-10-07T23:59:00+02:00",
+      "date": "7 October",
+      "time": "23:59",
+      "url": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251172/View",
+      "source": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1250999/View",
+      "description": "Each student reviews two other groups. A group submission does not complete this obligation."
+    },
+    {
+      "id": "task2",
+      "title": "Task 2 · Quantification",
+      "audience": "Group",
+      "due": "2026-11-18T23:59:00+01:00",
+      "date": "18 November",
+      "time": "23:59",
+      "url": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251173/View",
+      "source": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251002/View",
+      "description": "Quantify impacts and discuss the balance between the three sustainability pillars."
+    },
+    {
+      "id": "peer2",
+      "title": "Task 2 · Give peer feedback",
+      "audience": "Individual",
+      "due": "2026-11-25T23:59:00+01:00",
+      "date": "25 November",
+      "time": "23:59",
+      "url": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251173/View",
+      "source": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251003/View",
+      "description": "Each student reviews two other groups and addresses every criterion."
+    },
+    {
+      "id": "task3",
+      "title": "Task 3 · Assessment & outlook",
+      "audience": "Group",
+      "due": "2026-12-13T23:59:00+01:00",
+      "date": "13 December",
+      "time": "23:59",
+      "url": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251188/View",
+      "source": "https://learn.inside.dtu.dk/d2l/le/content/326408/viewContent/1251004/View",
+      "description": "Bring the project together: absolute sustainability, systemic effects, trade-offs and uncertainty."
+    },
+    {
+      "id": "exam",
+      "title": "Multiple-choice exam",
+      "audience": "Individual",
+      "dateOnly": "2026-12-19",
+      "date": "19 December",
+      "time": "Time & room to be announced",
+      "url": "https://student.dtu.dk/en/exam/exam-dates",
+      "source": "https://kurser.dtu.dk/print/courses",
+      "description": "60% of the final assessment. At least 50% correct answers are required to pass the quiz."
+    }
+  ]
+}

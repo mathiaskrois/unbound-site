@@ -50,3 +50,20 @@ The requested App Store URLs are:
 - `https://krois.dk/unbound/privacy`
 - `https://krois.dk/unbound/terms`
 - `https://krois.dk/unbound/support`
+
+## DTU course companion
+
+`/dtu/` is the course directory; `/dtu/12106/` contains the Fall 2026 Quantitative Sustainability overview, 13 weekly plans, a mandatory-work checklist and a searchable index of 362 DTU Learn content items. Microfabrication is the featured case. Raw downloaded course files, videos, session information and student details are not published. The current `/unbound/` and `/wordwin/` deployment is preserved.
+
+Edit `dtu-source/course.mjs` for curated weekly guidance and dated obligations, or `dtu-source/resources.json` for the source-link index. Source content was reviewed on 8 October 2026. Generated HTML in `dtu/` is committed for local previews; the deployment also rebuilds it from the source data.
+
+```sh
+npm run build:dtu
+npm run test:dtu:dates
+npm test
+npm run preview
+```
+
+The client tracker uses Europe/Copenhagen civil dates and explicit timezone offsets for timed deadlines. ISO calendar week 42 (12–18 October) is a break, not a teaching week; teaching week 7 starts 19 October. Exam time remains unspecified. Completion is personal, device-local state and never represents verified DTU submission status. Site content renders without JavaScript; live dates, filtering and checkboxes are progressive enhancements.
+
+Future courses should get their own source module, registry card and course directory; completion keys must include both course ID and term. Follow the same separation of sourced obligations, original study guidance and authenticated source links. Keep publication scoped to the generated public directory.

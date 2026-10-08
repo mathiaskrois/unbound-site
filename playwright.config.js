@@ -2,6 +2,7 @@ const { defineConfig, devices } = require('@playwright/test');
 
 module.exports = defineConfig({
   testDir: './tests',
+  testIgnore: '**/*.test.mjs',
   fullyParallel: true,
   workers: 3,
   reporter: 'list',

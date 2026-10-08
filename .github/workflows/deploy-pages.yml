@@ -58,6 +58,10 @@ jobs:
           npm ci
           npm test
           npm run build
+      - name: Build DTU course hub
+        run: |
+          node --test tests/dtu-state.test.mjs
+          node scripts/build-dtu.mjs
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Stage public website
@@ -65,6 +69,7 @@ jobs:
           mkdir -p _site
           cp index.html CNAME _site/
           cp -R unbound _site/
+          cp -R dtu _site/
           mkdir -p _site/wordwin
           cp -R wordwin-source/dist/. _site/wordwin/
           cp -R wordwin-source/hosting/WordWin _site/WordWin
