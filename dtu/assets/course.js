@@ -8,6 +8,7 @@ const dateFormat=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Copenhagen',d
 let data,selectedWeek=null;
 function showWeek(number) {
   all('[data-week-panel]').forEach(panel=>panel.hidden=Number(panel.dataset.weekPanel)!==number);
+  all('[data-select-week]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.selectWeek)===number)));
   const select=document.querySelector('#week-select');if(select)select.value=String(number);
 }
 function refresh() {
@@ -24,6 +25,7 @@ function refresh() {
   const currentLink=document.querySelector('[data-current-week]');
   if(currentLink){const target=week?.number||(state.kind==='before'?1:state.kind==='break'?7:13);currentLink.href=`/dtu/12106/weeks/${target}/`;currentLink.textContent=state.kind==='break'?'Preview week 7 →':state.kind==='after'?'Review week 13 →':'Open the weekly plan →';}
   all('[data-track]').forEach(el=>{const w=weeks.find(w=>w.number===Number(el.dataset.track));el.classList.toggle('elapsed',day>w.end);el.classList.toggle('current',week?.number===w.number);});
+  all('[data-current-marker]').forEach(el=>{el.classList.toggle('is-now',Number(el.dataset.currentMarker)===week?.number);el.parentElement.classList.toggle('is-now',Number(el.dataset.currentMarker)===week?.number);});
   all('[data-tile]').forEach(el=>el.classList.toggle('is-current',Number(el.dataset.tile)===week?.number));
   if(selectedWeek===null)showWeek(week?.number||(state.kind==='break'?7:state.kind==='before'?1:13));
   for(const item of obligations){
@@ -69,6 +71,8 @@ if(search){
   [search,group,kind].forEach(el=>el.addEventListener('input',filterResources));
   document.querySelector('[data-clear-filters]').addEventListener('click',()=>{search.value='';group.value='';kind.value='';filterResources();search.focus();});
 }
+all('[data-select-week]').forEach(button=>button.addEventListener('click',()=>{selectedWeek=Number(button.dataset.selectWeek);showWeek(selectedWeek);}));
+document.querySelector('[data-return-current]')?.addEventListener('click',()=>{selectedWeek=null;refresh();});
 document.querySelector('#week-select')?.addEventListener('change',event=>{selectedWeek=Number(event.target.value);showWeek(selectedWeek);});
 try{
   const response=await fetch('/dtu/12106/runtime.json');if(!response.ok)throw new Error('Course data unavailable');data=await response.json();

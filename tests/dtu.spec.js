@@ -5,7 +5,7 @@ test('overview exposes current week, next obligation, all routes and accessible 
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await page.goto('/dtu/12106/');
  await expect(page.locator('[data-semester]')).toHaveText('Week 06 of 13');await expect(page.locator('[data-next-title]')).toHaveText('Task 2 · Quantification');
  await expect(page.locator('[data-calendar]')).toContainText('Calendar week 41');await expect(page.locator('[data-week-panel="6"]')).toBeVisible();
- await expect(page.locator('[data-week-panel="5"]')).toBeHidden();await page.locator('#week-select').selectOption('9');await expect(page.locator('[data-week-panel="9"]')).toBeVisible();
+ await expect(page.locator('[data-week-panel="5"]')).toBeHidden();await page.locator('[data-select-week="9"]').click();await expect(page.locator('[data-week-panel="9"]')).toBeVisible();
  await expect(page.locator('[data-past-count]')).toContainText('3 past deadlines');
  const paths=['/dtu/','/dtu/12106/','/dtu/12106/deadlines/','/dtu/12106/materials/',...Array.from({length:13},(_,i)=>`/dtu/12106/weeks/${i+1}/`)];
  for(const path of paths){const res=await request.get(path);expect(res.status(),path).toBe(200);const html=await res.text();expect(html).toContain('<h1>');const internal=[...html.matchAll(/(?:href|src)="(\/dtu\/[^"#]*)(?:#[^"]*)?"/g)].map(m=>m[1]);for(const url of new Set(internal)){expect((await request.get(url)).status(),url).toBe(200);}}
